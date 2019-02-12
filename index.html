@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+    <style>
+        body {
+           margin: 0 auto; 
+           width: 960px; 
+           text-align: center;
+           border: 5px solid black; 
+           background-color: rgb(219, 143, 43); 
+              }
+     .word {
+        display:inline; 
+     }
+     
+     
+     </style>
+
+
+
+</head>
+<body>
+    <h4>Press Any Key to get started. Try to guess the name of a sport. You have ten guesses!</h4>
+    <p id="guessed"></p>
+    <p id="wrong"></p>
+    <p id="random"></p>  
+    <p id="char"></p>
+    <p id='wins'>Wins: 0</p>
+    <p id='losses'>Losses: 0</p>
+    
+    <p id="dash"></p>
+    <p id="countdown"></p>
+    <p id="playagain"></p>
+   
+
+    <script>
+    
+    
+   var correctGuesses; 
+   var wrongGuesses;
+   var count = "";
+  
+  
+
+   var output;
+   var wins =0; 
+   var loss = 0; 
+var names = ['soccer', 'basketball', 'football', 'hockey'];
+var correctGuesses = [];
+var random = names[Math.floor(Math.random()*names.length)];   
+//picks a random sport from the array 
+
+
+// below function makes a underscores and pushes into  new array based on the length of the random sport name
+function startup() {
+
+    for (var i=0; i<random.length; i++) {
+    correctGuesses.push("_"); 
+    } 
+  return document.getElementById("dash").innerHTML = correctGuesses.join();
+   
+}
+
+
+function fillarray () {
+document.onkeyup = function(event) {
+
+// Determines which key was pressed.
+var userGuess = event.key;
+count = count + userGuess; 
+if (userGuess.length>0) {
+    for (var j=0; j<random.length;j++) 
+    {
+        if (random[j]===userGuess)               
+        {
+            correctGuesses[j] = userGuess;  console.log(correctGuesses);    //if user guesses the correct letter in the word then the underscores are replaced in the array 
+        } 
+    }
+}
+//if there are no more underscores in the array the user has won 
+var remain = 10-count.length; 
+
+//if indexOf is -1 it means that there are no more underscores in the array. So therefore you win. 
+//But how do you restart the game from here? 
+if (correctGuesses.indexOf("_")===-1 && remain>0) {
+    alert('You won!'); 
+    wins++;
+    document.getElementById("wins").innerHTML =  "Wins: " +  wins;
+
+}
+
+// if remain is zero then you lose
+if (remain===0 ) {
+    alert("you lost!");
+    loss++; 
+ document.getElementById("losses").innerHTML = "Losses " + loss;    
+    }
+    
+document.getElementById("guessed").innerHTML =  "Number of guesses remaining: " + remain;
+document.getElementById("random").innerHTML = "Letters guessed so far:"  + count; 
+if (remain<0) 
+document.getElementById("guessed").innerHTML =  "Number of guesses remaining 0";
+document.getElementById("dash").innerHTML = correctGuesses.join();
+  
+}
+}
+
+startup();
+fillarray();
+
+
+
+
+
+
+    
+    
+    
+    
+    
+    
+    
+    
+    </script>
+    
+   
+
+
+</body>
+
+
+
+
+
+</html>
+
+
+
+
+
+
+
+
+
+
+
