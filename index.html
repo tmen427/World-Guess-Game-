@@ -87,18 +87,54 @@ var remain = 10-count.length;
 
 //if indexOf is -1 it means that there are no more underscores in the array. So therefore you win. 
 //But how do you restart the game from here? 
+/**
 if (correctGuesses.indexOf("_")===-1 && remain>0) {
     alert('You won!'); 
     wins++;
-    document.getElementById("wins").innerHTML =  "Wins: " +  wins;
+    
 
 }
+**/
+if (correctGuesses.indexOf("_")===-1) {
+   
+   wins++;
+   count = 0; 
+document.getElementById("wins").innerHTML =  "Wins: " +  wins;
+   correctGuesses = [];
+    names=['basketball', 'hockey','football', 'soccer'];
+    random = names[Math.floor(Math.random () * names.length)];
+
+   for (var c=0; c<random.length; c++) {
+      correctGuesses.push("_");
+     
+    }
+    console.log(correctGuesses); 
+    document.getElementById("dash").innerHTML = correctGuesses.join();
+
+   
+}
+
+
+
 
 // if remain is zero then you lose
 if (remain===0 ) {
-    alert("you lost!");
+
     loss++; 
- document.getElementById("losses").innerHTML = "Losses " + loss;    
+ document.getElementById("losses").innerHTML = "Losses " + loss;  
+    count =0; 
+    correctGuesses = [];
+ names=['ski', 'snowboard'];
+    random = names[Math.floor(Math.random () * names.length)];
+
+   for (var p=0; p<random.length; p++) {
+      correctGuesses.push("_");
+     
+    }
+    console.log(correctGuesses); 
+    document.getElementById("dash").innerHTML = correctGuesses.join();
+
+   
     }
     
 document.getElementById("guessed").innerHTML =  "Number of guesses remaining: " + remain;
